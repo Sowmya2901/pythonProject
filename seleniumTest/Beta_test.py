@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from SeleniumHelpers.helpers import Helpers
 from selenium.webdriver.common.actions.wheel_input import ScrollOrigin
-from seleniumTest.BetaPage import BetaPage
+from Pages.BetaPage import BetaPage
 
 
 # adding chrome options to block the alerts from browser
@@ -19,6 +19,7 @@ chr_options.add_experimental_option("prefs", {
 # initializing the Chrome browser
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chr_options)
 
+# initializing the beta page class
 beta_page = BetaPage(driver)
 
 # navigating to the application
@@ -44,6 +45,7 @@ time.sleep(5)
 
 # able to see the content tab of the assignment page
 driver.find_element(*beta_page.content_tab)
+
 
 def validate_rich_text():
     time.sleep(3)
@@ -77,7 +79,6 @@ def validate_group1_ques():
     driver.find_element(By.XPATH, "//h2[text()=' 2. Group 2 ']").click()
     time.sleep(2)
     flag = beta_page.validate_progress_perc()
-    print(flag)
     return flag
 
 
@@ -89,7 +90,6 @@ def validate_group2_ques():
     driver.switch_to.default_content()
     time.sleep(2)
     flag = beta_page.validate_progress_perc()
-    print(flag)
     return flag
 
 
@@ -99,12 +99,10 @@ def validate_scorm():
     while flag:
         driver.switch_to.default_content()
         element_displayed = driver.find_element(By.XPATH, "//h2[text()=' 2. Group 2 ']").is_displayed()
-        print(element_displayed)
         if element_displayed:
             flag = False
             bret = True
         else:
-            # click on next
             driver.find_element(*beta_page.next_button).click()
             time.sleep(4)
             flag = beta_page.validate_progress_perc()
@@ -117,22 +115,22 @@ if validate_the_url():
             if validate_group1_ques():
                 if validate_group2_ques():
                     assert True
+                else:
+                    assert False
 
-#
-# def validate_regression_of_progress_bar():
-#     time.sleep(2)
-#     perc_before = beta_page.progress_percentage_val()
-#     driver.switch_to.frame('assessment-builder')
-#     driver.find_element(*beta_page.G2_clear_answer).click()
-#     driver.switch_to.default_content()
-#     time.sleep(3)
-#     perc_after = beta_page.progress_percentage_val()
-#     if perc_after < perc_before:
-#         assert True
-#
-#
-# validate_regression_of_progress_bar()
-#
-# if validate_group1_ques():
-#     if validate_group2_ques():
 
+def validate_regression_of_progress_bar():
+    time.sleep(2)
+    perc_before = beta_page.progress_percentage_val()
+    driver.switch_to.frame('assessment-builder')
+    driver.find_element(*beta_page.G2_clear_answer).click()
+    driver.switch_to.default_content()
+    time.sleep(3)
+    perc_after = beta_page.progress_percentage_val()
+    if perc_after < perc_before:
+        assert True
+    else:
+        assert False
+
+
+validate_regression_of_progress_bar()

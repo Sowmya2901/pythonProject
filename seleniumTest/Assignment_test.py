@@ -7,7 +7,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from SeleniumHelpers.helpers import Helpers
-from seleniumTest.AssignmentPage import TestAssignmentPage
+from Pages.AssignmentPage import TestAssignmentPage
 from selenium.webdriver.common.actions.wheel_input import ScrollOrigin
 
 chr_options = Options()
@@ -57,7 +57,6 @@ def validate_rich_text():
     time.sleep(3)
     flag = assignment_page.validate_progress_perc()
     driver.find_element(*assignment_page.next_button).click()
-    print(flag)
     return flag
 
 
@@ -71,7 +70,6 @@ def validate_the_url():
     driver.find_element(*assignment_page.next_button).click()
     time.sleep(3)
     flag = assignment_page.validate_progress_perc()
-    print(flag)
     return flag
 
 
@@ -86,7 +84,6 @@ def validate_group1_ques():
     driver.find_element(By.XPATH, "//h2[text()=' 2. Group 2 ']").click()
     time.sleep(2)
     flag = assignment_page.validate_progress_perc()
-    print(flag)
     return flag
 
 
@@ -98,7 +95,6 @@ def validate_group2_ques():
     driver.switch_to.default_content()
     time.sleep(2)
     flag = assignment_page.validate_progress_perc()
-    print(flag)
     return flag
 
 
@@ -108,6 +104,8 @@ if assignment_page.progress_percentage_val() == 0:
             if validate_group1_ques():
                 if validate_group2_ques():
                     assert True
+                else:
+                    assert False
 
 
 def validate_regression_of_progress_bar():
@@ -120,6 +118,8 @@ def validate_regression_of_progress_bar():
     perc_after = assignment_page.progress_percentage_val()
     if perc_after < perc_before:
         assert True
+    else:
+        assert False
 
 
 validate_regression_of_progress_bar()
