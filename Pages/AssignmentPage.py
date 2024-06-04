@@ -28,7 +28,16 @@ class TestAssignmentPage:
         self.G2_Q1_options = ["//input[@id='68c6dabf-8373-4111-aa25-e0b9e887049c']",
                               "//input[@id='df820bf9-530a-4225-a5c8-a7e922d21143']",
                               "//input[@id='45488bbf-ebbe-4618-802e-7d4e6d7639f9']"]
+        self.Beta_Ques1_options = ["//input[@id='e589dda2-67bb-4211-add3-03233fe48b07']",
+                                   "//input[@id='4b2109c0-1fdb-4dc9-a641-8a8a5e932d27']",
+                                   "//input[@id='50d3652c-3018-499a-bf1d-dba86a439b93']"]
+        self.Beta_Ques3_options = ["//input[@id='2ae10166-84ac-4022-b1f3-20bbf1d2c085']",
+                                   "//input[@id='d566fc2a-cf32-4a5f-b862-61199b09d097']", ]
+        self.G2_Beta_Q1_options = ["//input[@id='75e697ab-a105-4529-ac3d-c29f8c017897']",
+                                   "//input[@id='26d296d3-d004-40e5-9a1e-5570e024caa8']",
+                                   "//input[@id='f7688ab3-4167-4f0a-b888-141ec59f7a96']"]
         self.optionsList = [self.Ques1_options, self.Ques2_option, self.Ques3_options]
+        self.optionsList_Beta = [self.Beta_Ques1_options, self.Ques2_option, self.Beta_Ques3_options]
 
     def navigate_to_URL(self, url):
         self.driver.get(url)
@@ -63,14 +72,14 @@ class TestAssignmentPage:
         else:
             return False
 
-    def select_option_for_questions(self):
+    def select_option_for_questions(self,  option_list):
         i = 0
         G1_list_of_questions = self.driver.find_elements(By.XPATH,
                                            "//ol[@class='ScorableQuestionList']//div[@class='ScorableQuestion']//div[@class='QuestionName']")
         for question in G1_list_of_questions:
-            if type(self.optionsList[i]) == list:
-                random_element = random.choice(self.optionsList[i])
+            if type(option_list[i]) == list:
+                random_element = random.choice(option_list[i])
                 self.driver.find_element(By.XPATH, random_element).click()
             else:
-                self.driver.find_element(*self.optionsList[i]).send_keys("World Health Organisation")
+                self.driver.find_element(*option_list[i]).send_keys("World Health Organisation")
             i += 1
