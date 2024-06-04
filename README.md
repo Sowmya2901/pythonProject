@@ -32,7 +32,7 @@ Github link - https://github.com/Sowmya2901/pythonProject
 - For running beta feature run Beta_test.py file by clicking run button on the top
 
 
-#Tech Stack 
+##Tech Stack 
 
 programming language used : Python
 
