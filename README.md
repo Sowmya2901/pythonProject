@@ -42,8 +42,15 @@ IDE : Pycharm
 
 ## Note:
 
-Please execute the test files after resetting the status of the assigment modules to 'planned'.
+-Please execute the test files after resetting the status of the assigment modules to 'planned'.
 The code works perfectly only when progress bar is at 0%.
+
+- Please use the login credentials for Test User3  by sending email as a string in send keys method of email and password as a string in sendkeys method of pasword respectively.
+please refer below example to do modification in AssignmentPage.py file line number 46 and 47.
+
+eg:  
+self.driver.find_element(By.ID, 'email').send_keys('abc@gmail.com')
+self.driver.find_element(By.ID, 'password').send_keys('abc@123')
 
 
 

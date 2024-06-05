@@ -43,8 +43,8 @@ class TestAssignmentPage:
         self.driver.get(url)
 
     def login_page(self):
-        self.driver.find_element(By.ID, 'email').send_keys('test.user3@genesys-interview.com')
-        self.driver.find_element(By.ID, 'password').send_keys('oR7]bajo')
+        self.driver.find_element(By.ID, 'email').send_keys()
+        self.driver.find_element(By.ID, 'password').send_keys()
         self.driver.find_element(By.XPATH, "//button[@type='submit']").click()
 
     def progress_percentage_val(self):
