@@ -32,13 +32,20 @@ Github link - https://github.com/Sowmya2901/pythonProject
 - For running beta feature run Beta_test.py file by clicking run button on the top
 
 
-##Tech Stack 
+## Tech Stack 
 
 programming language used : Python
 
 Automation tool :  Selenium
 
 IDE : Pycharm
+
+## Note:
+
+Please execute the test files after resetting the status of the assigment modules to 'planned'.
+The code works perfectly only when progress bar is at 0%.
+
+
 
 
 
